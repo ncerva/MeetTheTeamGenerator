@@ -29,7 +29,8 @@ const employee = () => {
                 'no',
             ]
         }
-    ]).then((employee) => writeToFile(employee))
+    ])
+    .then((employee) => writeToFile(employee))
     .then(() => console.log('Successfully created profiles'))
     .catch((err) => console.error(err))};
 
