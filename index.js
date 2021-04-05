@@ -5,15 +5,20 @@ const Intern = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Employee = require('./lib/Intern');
 
-const managerArr = []
-const internArr = []
-const engineerArr = []
+const managerArr = [];
+const internArr = [];
+const engineerArr = [];
 const promptUser = () => {
     inquirer.prompt([
         {
             message: 'Enter team members name:',
             type: 'input',
             name: 'name',
+        },
+        {
+            message: 'Enter team members email:',
+            type: 'input',
+            name: 'email',
         },
         {
             type: 'list',
@@ -51,7 +56,7 @@ const promptUser = () => {
             else {
                 writeToFile(managerArr,engineerArr,internArr);
 }});
-}
+};
 
 
 function writeToFile(m,e,i) {
@@ -60,27 +65,30 @@ function writeToFile(m,e,i) {
             console.log(err);
         }
         console.log('New Profile Generated');
-    })
+    });
 };
 function manager(data) {
-    return data.forEach(item => {
-        console.log(item)
-        return `<div><h1> ${item.name} </h1><h2> Manager </h2></div>`
+    var results = ''
+    data.forEach(item => {
+    results+= `<div><h1> ${item.name} </h1><h2> Manager </h2></div>`
     })
+    return results
 };
 function engineer(data) {
-    console.log(data);
-    return data.forEach(item => {
-        console.log(item)
-        return `<div><h1> ${item.name} </h1><h2> Engineer </h2></div>`
+    var results = ''
+    data.forEach(item => {
+    results+= `<div><h1> ${item.name} </h1><h2> Engineer </h2></div>`
     })
+    return results
 };
 function intern(data) {
-    return data.forEach(item => {
-        console.log(item)
-        return `<div><h1> ${item.name} </h1><h2> Intern </h2></div>`
+    var results = ''
+    data.forEach(item => {
+    results+= `<div><h1> ${item.name} </h1><h2> Intern </h2></div>`
     })
+    return results
 };
+
 // TODO: Create a function to initialize app
 function init() {
     promptUser()
@@ -88,18 +96,39 @@ function init() {
 function generateHtml(m,e,i) {
     return `<!DOCTYPE html>
     <html lang="en">
+    
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <title>Meet the Team</title>
     </head>
-    <h1>Name</h1>
-    <h1>Email</h1>
+    
     <body>
-        ${manager(m)}
-        ${engineer(e)}
-        ${intern(i)}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Member Position</h5>
+                <h6 class="card-subtitle mb-2 text-muted"> ${manager(m)} </h6>
+                <p class="card-text"> Change this too?? </p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Member Position</h5>
+                <h6 class="card-subtitle mb-2 text-muted"> ${engineer(e)} </h6>
+                <p class="card-text"> Change this too?? </p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Member Position</h5>
+                <h6 class="card-subtitle mb-2 text-muted"> ${intern(i)} </h6>
+                <p class="card-text"> Change this too?? </p>
+            </div>
+        </div>
     </body>
+    
     </html>`
 };
 // Function call to initialize app
