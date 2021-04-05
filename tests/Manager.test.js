@@ -21,9 +21,9 @@ describe("Email", ()=>{
         expect(result).toEqual(str);
     });
 });
-describe("School", ()=>{
-    it("Should require school name", ()=>{       
-        const str = "UTSA";
+describe("Office Number", ()=>{
+    it("Should require office number", ()=>{
+        const str = "210-123-1234";
         const result = new Manager().describe(str);
         expect(result).toEqual(str);
     });

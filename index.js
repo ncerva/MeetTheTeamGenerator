@@ -110,21 +110,18 @@ function generateHtml(m,e,i) {
             <div class="card-body">
                 <h5 class="card-title">Member Position</h5>
                 <h6 class="card-subtitle mb-2 text-muted"> ${manager(m)} </h6>
-                <p class="card-text"> Change this too?? </p>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Member Position</h5>
                 <h6 class="card-subtitle mb-2 text-muted"> ${engineer(e)} </h6>
-                <p class="card-text"> Change this too?? </p>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Member Position</h5>
                 <h6 class="card-subtitle mb-2 text-muted"> ${intern(i)} </h6>
-                <p class="card-text"> Change this too?? </p>
             </div>
         </div>
     </body>
