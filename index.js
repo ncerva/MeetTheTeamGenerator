@@ -21,6 +21,11 @@ const promptUser = () => {
             name: 'email',
         },
         {
+            message: 'Enter team members ID:',
+            type: 'input',
+            name: 'ID',
+        },
+        {
             type: 'list',
             message: 'select team members role',
             name: 'employeeRole',
@@ -41,26 +46,27 @@ const promptUser = () => {
         }
     ])
         .then((employee) => {
-            if (employee.employeeRole === 'Manager'){
+            if (employee.employeeRole === 'Manager') {
                 managerArr.push(employee)
             }
-            if (employee.employeeRole === 'Engineer'){
+            if (employee.employeeRole === 'Engineer') {
                 engineerArr.push(employee)
             }
-            if (employee.employeeRole === 'Intern'){
+            if (employee.employeeRole === 'Intern') {
                 internArr.push(employee)
             }
             if (employee.addTeamMember === 'yes') {
                 promptUser()
             }
             else {
-                writeToFile(managerArr,engineerArr,internArr);
-}});
+                writeToFile(managerArr, engineerArr, internArr);
+            }
+        });
 };
 
 
-function writeToFile(m,e,i) {
-    fs.writeFile("dist/index.html", generateHtml(m,e,i), (err) => {
+function writeToFile(m, e, i) {
+    fs.writeFile("dist/index.html", generateHtml(m, e, i), (err) => {
         if (err) {
             console.log(err);
         }
@@ -70,21 +76,32 @@ function writeToFile(m,e,i) {
 function manager(data) {
     var results = ''
     data.forEach(item => {
-    results+= `<div><h1> ${item.name} </h1><h2> Manager </h2></div>`
+        results += `<div><h1> ${item.name} </h1></div>`
+        results += `<div><h1> ${item.role} </h1></div>`
+        results += `<div><h1> ${item.email} </h1></div>`
+        results += `<div><h1> ${item.officeNumber} </h1></div>`
+        results += `<div><h1> ${item.id} </h1></div>`
     })
     return results
 };
 function engineer(data) {
     var results = ''
     data.forEach(item => {
-    results+= `<div><h1> ${item.name} </h1><h2> Engineer </h2></div>`
+        results += `<div><h1> ${item.name} </h1></div>`
+        results += `<div><h1> ${item.role} </h1></div>`
+        results += `<div><h1> ${item.email} </h1></div>`
+        results += `<div><h1> ${item.github} </h1></div>`
+        results += `<div><h1> ${item.id} </h1></div>`
     })
     return results
 };
 function intern(data) {
     var results = ''
     data.forEach(item => {
-    results+= `<div><h1> ${item.name} </h1><h2> Intern </h2></div>`
+        results += `<div><h1> ${item.name} </h1></div>`
+        results += `<div><h1> ${item.email} </h1></div>`
+        results += `<div><h1> ${item.school} </h1></div>`
+        results += `<div><h1> ${item.id} </h1></div>`
     })
     return results
 };
@@ -93,7 +110,7 @@ function intern(data) {
 function init() {
     promptUser()
 };
-function generateHtml(m,e,i) {
+function generateHtml(m, e, i) {
     return `<!DOCTYPE html>
     <html lang="en">
     
